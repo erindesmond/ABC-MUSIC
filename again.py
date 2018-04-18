@@ -65,8 +65,8 @@ def model(X, y, num_chars):
     optimizer = RMSprop(lr=0.01)
 
     model = Sequential()
-    model.add(LSTM(memory_units, input_shape=(sequences, num_chars), return_sequences=True)) # 1 label per timestep
-    model.add(Dropout(dropout_rate))
+    model.add(LSTM(memory_units, input_shape=(sequences, num_chars))) #return_sequences=true # 1 label per timestep
+    #model.add(Dropout(dropout_rate))
     model.add(Dense(num_chars, activation='softmax'))
 
 
@@ -117,16 +117,16 @@ def on_epoch_end(epoch, logs):
 
 if __name__ == '__main__':
 
-    sequences = 100
+    sequences = 25
     time_step = 1
 
-    data, characters, num_char, vocab_size = load_data('abc_test.txt')
+    data, characters, num_chars, vocab_size = load_data('abc_test.txt')
 
     char_to_idx, idx_to_char = create_idx_dictionary(characters)
 
-    sequence_in, next_chars, num_samples = prepare_X_y(data, num_char, sequences, time_step, char_to_idx)
+    dataX, dataY, num_samples = prepare_X_y(data, num_chars, sequences, time_step, char_to_idx)
 
-    X, y = vectorize_X_y(sequence_in, next_chars, sequences, num_char, char_to_idx, next_chars)
+    X, y = vectorize_X_y(dataX, sequences, num_chars, char_to_idx, dataY) #dayaY = next_char
 
     print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
