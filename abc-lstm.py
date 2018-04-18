@@ -63,6 +63,7 @@ def prepare_X_y(data, len_sequences, num_sequences, num_features, char_to_idx_di
     return X, y
 
 def generate_text(model, length):
+
     idx = [np.random.randint(vocab_size)]
     y_char = [idx_to_char_dict[idx[-1]]]
     X = np.zeros((1, length, vocab_size))
@@ -71,9 +72,12 @@ def generate_text(model, length):
 
         X[0, i, :][idx[-1]] = 1
         print(idx_to_char_dict[idx[-1]], end="")
+
         idx = np.argmax(model.predict(X[:, :i+1, :])[0], 1)
         y_char.append(idx_to_char_dict[idx[-1]])
+
     return ('').join(y_char)
+
 
 if __name__ == '__main__':
 
@@ -100,7 +104,7 @@ if __name__ == '__main__':
                        return_sequences=True))
 
     model.add(Dropout(dropout))
-    model.add(TimeDistributed(Dense(vocab_size), kernel_initializer='random_uniform'))
+    model.add(TimeDistributed(Dense(vocab_size)))
     model.add(Activation('softmax'))
 
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
