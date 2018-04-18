@@ -130,7 +130,7 @@ if __name__ == '__main__':
 
     print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
-    model = model(X, y)
+    model = model(X, y, num_chars)
     model.fit(X, y, epochs=20,
               batch_size=20,
               callbacks=[print_callback])
