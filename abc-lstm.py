@@ -25,6 +25,17 @@ def create_idx_dictionary(characters):
 
         return char_to_idx, idx_to_char
 
+def prepare_X_y():
+
+    X = np.zeros((len(data) // len_sequences, len_sequences, num_features))
+    y = np.zeros((len(data) // len_sequences, len_sequences, num_features))
+
+    for idx in range(0, int(num_sequences)):
+
+
+
+
+
 def prepare_X_y(data, len_sequences, num_sequences, num_features, char_to_idx_dict):
 
     X = np.zeros((len(data)//len_sequences, len_sequences, num_features))

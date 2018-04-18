@@ -10,7 +10,6 @@ from keras.utils import np_utils
 # load ascii text and covert to lowercase
 filename = "abc_all.txt"
 raw_text = open(filename).read()
-raw_text = raw_text.lower()
 # create mapping of unique chars to integers, and a reverse mapping
 chars = sorted(list(set(raw_text)))
 char_to_int = dict((c, i) for i, c in enumerate(chars))
@@ -34,7 +33,7 @@ print("Total Patterns: ", n_patterns)
 # reshape X to be [samples, time steps, features]
 X = numpy.reshape(dataX, (n_patterns, seq_length, 1))
 # normalize
-X = X / float(n_vocab)
+#X = X / float(n_vocab)
 # one hot encode the output variable
 y = np_utils.to_categorical(dataY)
 # define the LSTM model
