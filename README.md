@@ -57,7 +57,8 @@ I was able to successfully convert the ABC files to staff notation and play some
 ##### Next Steps
 1. Further optimize model
 2. Consider formats other than ABC to train on more nuanced music
-3. Consider more Tensorboard Objects or better visulization of my LSTM
+3. Consider more Tensorboard objects or better visualization of LSTM
+4. Consider alternate printing options...
 
 
 
