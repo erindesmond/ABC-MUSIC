@@ -22,11 +22,21 @@ Therefore, for this particular project, my data is limited to simpler melodic so
 
 ##### The Model
 
-I am using a [Keras LSTM](https://keras.io/layers/recurrent/#lstm) model with only one LSTM cell that has 10 memory units with a dropout rate of 0.3, an RMSprop optimizer with a learning rate of 0.01, and final softmax activation function.
+I am using a [Keras LSTM](https://keras.io/layers/recurrent/#lstm) model with only one LSTM layer that has
+1. Memory Units: 100
+2. Dropout Rate: 0.3
+3. Optimizer: RMSprop, lr=0.01
+4. Batch: 100
+5. Sequence Length: 40
 
-This model randomly chooses a string of 25 characters, and computes the probability distribution of these characters. Then through a function that normalizes the distributions by numbers that represent the standard deviation from the mean of that distribution, it randomly picks a character to append to the original 25 characters, at which point it takes a step forward in time, dropping the first character from the original string. In this way, it makes an 'educated' guess as to what the next character should be. As weights are updated at the end of each batch size, the model will learn probabilities over time. But because of the random choice from the distribution of the original 25 characters, the predicted text will not exactly match the original text.
+![model](images/graph2.png)
 
-##### Tensorboard Images     
+##### Tensorboard Images
+
+This is the loss over time with a dropout rate of 0.3
+![loss_one](images/log_one.png)
+
+
 
 ##### Results
 After 1 epoch with a batch size of 100:
@@ -37,6 +47,17 @@ After 10 epochs:
 
 After 20 epochs:
 ![twenty_epochs](images/twenty_epochs.png)
+You can see that the network has learned some of the structure of ABC format, and is even beginning to write titles for its tunes.
+
+##### Postscript
+I was able to successfully convert the ABC files to staff notation and play some (though not all) of the tunes with MuseScore 2. Here's my favorite (mostly because of the title).
+
+![song](images/song.png)
+
+##### Next Steps
+1. Further optimize model
+2. Consider formats other than ABC to train on more nuanced music
+3. Consider more Tensorboard Objects or better visulization of my LSTM
 
 
 
