@@ -27,19 +27,19 @@ I am using a [Keras LSTM](https://keras.io/layers/recurrent/#lstm) model with on
 2. Dropout Rate: 0.3
 3. Optimizer: RMSprop, lr=0.01
 4. Batch: 100
-5. Sequence Length: 40
+5. Sequence Length: 25
 
-![model](images/graph2.png)
+![model](images/lstmModel.png)
 
-##### Tensorboard Images
+##### Model Performance
 
-This is the loss over time with a dropout rate of 0.3
+Loss over epochs
 ![loss_one](images/log_one.png)
 
 
 
 ##### Results
-After 1 epoch with a batch size of 100:
+After 1 epoch:
 ![one_epoch](images/one_epoch.png)
 
 After 10 epochs:
@@ -50,15 +50,21 @@ After 20 epochs:
 You can see that the network has learned some of the structure of ABC format, and is even beginning to write titles for its tunes.
 
 ##### Postscript
-I was able to successfully convert the ABC files to staff notation and play some (though not all) of the tunes with MuseScore 2. Here's my favorite (mostly because of the title).
+I was able to successfully convert the ABC files to staff notation and play some (though not all) of the tunes with MuseScore 2. Here are some of my favorite titles:
 
+1. Cone Blcen Cherronatee
+2. Slio Keleoso
+3. 9D Millillihe Mo's Boy
+4. Dewenr Bcend Batlis
+5. The Lassie's Fatre
+
+And my absolute favorite:
 ![song](images/song.png)
 
 ##### Next Steps
 1. Further optimize model
 2. Consider formats other than ABC to train on more nuanced music
-3. Consider more Tensorboard objects or better visualization of LSTM
-4. Consider alternate printing options...
+3. Save output in text file
 
 
 
@@ -67,7 +73,8 @@ I was able to successfully convert the ABC files to staff notation and play some
 2. [Training a Recurrent Neural Network to Compose Music](https://maraoz.com/2016/02/02/abc-rnn/)
 3. [Text Generation With LSTM Recurrent Neural Networks in Python with Keras](https://machinelearningmastery.com/text-generation-lstm-recurrent-neural-networks-python-keras/)
 4. [Creating A Text Generator Using Recurrent Neural Network](https://chunml.github.io/ChunML.github.io/project/Creating-Text-Generator-Using-Recurrent-Neural-Network/)
-5. [About ABC Notation](http://abcnotation.com/about)
+5. [Team Keras](https://github.com/keras-team)
+6. [About ABC Notation](http://abcnotation.com/about)
 
 ##### In Conclusion
 "Never get one of those cheap tin whistles. It leads to much harder drugs like pipes and flutes." -Irish Proverb

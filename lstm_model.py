@@ -210,7 +210,7 @@ if __name__ == '__main__':
 
 
     batch_size = 100
-    tensor_callback = tensorboard = TensorBoard(log_dir='./logs_two', batch_size=batch_size, write_graph=True, write_grads=True, write_images=True)
+    tensor_callback = tensorboard = TensorBoard(log_dir='./logs', batch_size=batch_size, write_graph=True, write_grads=True, write_images=True)
     print_callback = LambdaCallback(on_epoch_end=on_epoch_end)
 
     # model.fit(X, y, epochs=1,
