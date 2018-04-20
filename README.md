@@ -29,7 +29,7 @@ I am using a [Keras LSTM](https://keras.io/layers/recurrent/#lstm) model with on
 4. Batch: 100
 5. Sequence Length: 25
 
-![model](images/lstm_better.png)
+![model](images/use_this.png)
 
 ##### Model Performance
 
@@ -65,7 +65,7 @@ And my absolute favorite:
 1. Further optimize model
 2. Consider formats other than ABC to train on more nuanced music
 3. Save output in text file
-4. Rework some functions in order to properly save training weights
+4. Rework some functionsl in order to properly save training weights
 
 
 
