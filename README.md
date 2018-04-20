@@ -65,7 +65,7 @@ And my absolute favorite:
 1. Further optimize model
 2. Consider formats other than ABC to train on more nuanced music
 3. Save output in text file
-4. Rework some function in order to properly save training weights
+4. Rework some functions in order to properly save training weights
 
 
 
