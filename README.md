@@ -37,7 +37,6 @@ Loss over epochs
 ![loss_one](images/log_one.png)
 
 
-
 ##### Results
 After 1 epoch:
 ![one_epoch](images/one_epoch.png)
@@ -57,6 +56,7 @@ I was able to successfully convert the ABC files to staff notation and play some
 3. 9D Millillihe Mo's Boy
 4. Dewenr Bcend Batlis
 5. The Lassie's Fatre
+6. The orant sit
 
 And my absolute favorite:
 ![song](images/song.png)
@@ -65,6 +65,7 @@ And my absolute favorite:
 1. Further optimize model
 2. Consider formats other than ABC to train on more nuanced music
 3. Save output in text file
+4. Rework some function in order to properly save training weights
 
 
 

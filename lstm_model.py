@@ -8,7 +8,7 @@ from keras.models import Sequential
 from keras.layers.recurrent import LSTM
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.wrappers import TimeDistributed
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
 from keras.callbacks import LambdaCallback, TensorBoard
 from keras.utils import plot_model
 import graphviz
@@ -82,7 +82,8 @@ def model(X, y, vocabulary, sequences):
 
     memory_units = 100
     dropout_rate = 0.3
-    optimizer = RMSprop(lr=0.01)
+    rmsprop = RMSprop(lr=0.001) # found minimum at around 20
+    adam = Adam(lr=0.001) #rmsprop worked better
 
     model = Sequential()
     model.add(LSTM(memory_units, input_shape=(sequences, len(vocabulary)))) #return_sequences=true if you want more LSTMS
@@ -91,7 +92,7 @@ def model(X, y, vocabulary, sequences):
     #plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 
 
-    model.compile(loss='categorical_crossentropy', optimizer=optimizer)
+    model.compile(loss='categorical_crossentropy', optimizer=rmsprop)
     #plot_model(model, to_file='model.png')
 
     return model
@@ -217,7 +218,7 @@ if __name__ == '__main__':
     #           batch_size=batch_size,
     #           callbacks=[print_callback, tensor_callback])
 
-    model.fit(X, y, epochs=50,
+    model.fit(X, y, epochs=20,
               batch_size=batch_size,
               callbacks=[print_callback, tensor_callback])
 
