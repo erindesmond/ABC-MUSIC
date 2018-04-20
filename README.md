@@ -29,7 +29,7 @@ I am using a [Keras LSTM](https://keras.io/layers/recurrent/#lstm) model with on
 4. Batch: 100
 5. Sequence Length: 25
 
-![model](images/lstmModel.png)
+![model](images/lstm_better.png)
 
 ##### Model Performance
 
