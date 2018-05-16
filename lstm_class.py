@@ -113,12 +113,10 @@ class ABC():
         Takes the natural log of that distribution, and divides it by the diversity
         Exponentiate the results so that we're back to probabilities that don't sum to 1,
         Divide that by the sum of the exponentiated array so that they do sum to 1.
-
         Doing this with the diversity allows for more "randomness" in the model predictions.
         If the diversity == 1, the distribution is unchanged,
         If the diversity < 1, it makes the most probabable characters even more probable, reducing diversity
         If the diversity > 1, it makes the least probabable characters more probable, increasing diversity.
-
         Input: An array of the predicted values from the model, diversity list
         Output: The index of the largest number from the calculated probabilities, accounting for diversity.'''
 
@@ -181,6 +179,18 @@ if __name__ == '__main__':
 
 
     ''''''
+
+
+
+
+
+
+
+
+
+
+
+#
 
 
 
