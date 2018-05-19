@@ -56,6 +56,9 @@ class GenerateMusic():
     def produce_and_print_results(self):
         '''Prints the predicted music pattern to the terminal'''
 
+        print()
+        print('\n----- Generating text after Epoch: %d' % epoch)
+
         start_idx = np.random.randint(0, len(self.data)-self.sequences - 1)
 
         for diversity in [0.2, 0.5, 1.0, 1.2]:
@@ -90,11 +93,12 @@ class GenerateMusic():
 
 if __name__ == '__main__':
 
-    training_data = '../data/abc_train.txt'
-    testing_data = '../data/abc_test.txt'
-    all_data = '../data/abc_all.txt'
-    classical_test = '../data/classical_test.txt'
+    irish = '../data/abc_all.txt'
     bach = '../data/bach.rtf'
+    enya = '../data/enya.rtf'
+    mj = '../data/mj.rtf'
+    everyone = '../data/all_together.rtf'
+
     sequences = 25
     epochs = 40
     batch_size = 100

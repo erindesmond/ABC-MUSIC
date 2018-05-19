@@ -70,11 +70,12 @@ class PrepareData():
 
 if __name__ == '__main__':
 
-    training_data = '../data/abc_train.txt'
-    testing_data = '../data/abc_test.txt'
-    all_data = '../data/abc_all.txt'
-    classical_test = '../data/classical_test.txt'
+    irish = '../data/abc_all.txt'
     bach = '../data/bach.rtf'
+    enya = '../data/enya.rtf'
+    mj = '../data/mj.rtf'
+    everyone = '../data/all_together.rtf'
+    
     sequences = 25
 
     prep_data = PrepareData(bach, sequences)

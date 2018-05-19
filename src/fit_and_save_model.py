@@ -31,7 +31,7 @@ class SaveModel():
 
         memory_units = 100
         dropout_rate = 0.3
-        rmsprop = RMSprop(lr=0.001) 
+        rmsprop = RMSprop(lr=0.001)
         #adam = Adam(lr=0.001) #rmsprop worked better
 
         self.model = Sequential()
@@ -56,11 +56,12 @@ class SaveModel():
 
 if __name__ == '__main__':
 
-    training_data = '../data/abc_train.txt'
-    testing_data = '../data/abc_test.txt'
-    all_data = '../data/abc_all.txt'
-    classical_test = '../data/classical_test.txt'
+    irish = '../data/abc_all.txt'
     bach = '../data/bach.rtf'
+    enya = '../data/enya.rtf'
+    mj = '../data/mj.rtf'
+    everyone = '../data/all_together.rtf'
+    
     sequences = 25
     epochs = 40
     batch_size = 100

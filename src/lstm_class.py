@@ -170,11 +170,11 @@ if __name__ == '__main__':
     # training_data = '/Users/erindesmond/Documents/abc_lstm/data/abc_train.txt'
     # testing_data = '/Users/erindesmond/Documents/abc_lstm/data/abc_test.txt'
     # classical_test = '/Users/erindesmond/Documents/abc_lstm/data/classical_test.txt'
-    irish = '/Users/erindesmond/Documents/music_capstone/data/abc_all.txt'
-    bach = '/Users/erindesmond/Documents/music_capstone/data/bach.rtf'
-    enya = '/Users/erindesmond/Documents/music_capstone/data/enya.rtf'
-    mj = '/Users/erindesmond/Documents/music_capstone/data/mj.rtf'
-    everyone = '/Users/erindesmond/Documents/music_capstone/data/all_together.rtf'
+    irish = '../data/abc_all.txt'
+    bach = '../data/bach.rtf'
+    enya = '../data/enya.rtf'
+    mj = '../data/mj.rtf'
+    everyone = '../data/all_together.rtf'
 
     sequences = 25
     epochs = 5
