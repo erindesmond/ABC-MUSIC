@@ -1,5 +1,4 @@
-# DJ ABC LSTM
-##### Traditional Irish Music with a Modern Twist
+# DJ Neural Net - Artificial Music Composition 
 
 ##### Goal
 The aim of this project is to train a LSTM RNN to write music.
