@@ -1,5 +1,8 @@
 # DJ Neural Net - Artificial Music Composition
 
+This code can be run from the command line on any text or rtf file:
+$ python lstm_class.py --data "my_file.txt"
+
 ##### Intro
 The inspiration for this project came from my experience as a classical pianist and my interest in natural language processing and deep learning. When I learned of the power of recurrent neural networks from Andrej Karpathy's paper [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/), it seemed fitting that I could produce music with such a model.
 
