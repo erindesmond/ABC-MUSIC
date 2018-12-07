@@ -31,7 +31,7 @@ A LSTM RNN model seemed fitting as context within music is important and must be
 Loss over epochs
 ![loss_one](images/log_one.png)
 
-Evaluating the model was an interesting task as I did not have testing data. Since the goal was to produce new music, there was not a way to properly split the data into testing and training sets. Thus the loss is calculating the difference in predicted and actual values for the entire dataset. With not loss calculated on testing data, the task of evaluation was left to my ears.
+Evaluating the model was an interesting task as I did not have testing data. Since the goal was to produce new music, there was not a way to properly split the data into testing and training sets. Thus the loss is calculating the difference in predicted and actual values for the entire dataset. With no loss calculated on testing data, the final task of evaluation was left to my ears.
 
 ##### Results
 After 1 epoch:
