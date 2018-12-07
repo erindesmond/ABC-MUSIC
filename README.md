@@ -1,7 +1,7 @@
-# DJ Neural Net - Artificial Music Composition 
+# DJ Neural Net - Artificial Music Composition
 
-##### Goal
-The aim of this project is to train a LSTM RNN to write music.
+##### Intro
+The inspiration for this project came from my experience as a classical pianist and my interest in natural language processing and deep learning. When I learned of the power of recurrent neural networks from Andrej Karpathy's paper [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/), it seemed fitting that I could produce music with such a model.
 
 ##### Data
 A corpus of traditional Irish folk songs, dances, reels, and jigs contained in the Nottingham Music Database that were translated into ABC format by the [ABC Music Project](http://abc.sourceforge.net/NMD/). I found clean versions of these songs [here](http://abc.sourceforge.net/NMD/). I also trained the network on Bach, Backstreet Boys, Enya and Michael Jackson, also translated into ABC format.
@@ -11,7 +11,7 @@ ABC is a textual representation of music notation. This limited the amount of tr
 
 ![ABC](images/abc.png) ![staff](images/abc_music.png)
 
-Though ABC is a rather robust representation of music, there is a bit of nuance lost in translation.
+Though ABC is a rather robust representation of music, there is a bit of nuance lost in translation. It is also somewhat difficult to translate staff notation into ABC format by hand, so I used a program called [EasyABC](https://www.nilsliberg.se/ksp/easyabc/) to do most of the work for me; after EasyABC took care of the translation, I checked the pieces for accuracy.
 
 ##### The Model
 
@@ -24,10 +24,14 @@ I am using a [Keras LSTM](https://keras.io/layers/recurrent/#lstm) model with on
 
 ![model](images/use_this.png)
 
+A LSTM RNN model seemed fitting as context within music is important and must be maintained over long periods of time. The LSTM model better contains this context and thus theoretically would produce better music.
+
 ##### Model Performance
 
 Loss over epochs
 ![loss_one](images/log_one.png)
+
+Evaluating the model was an interesting task as I did not have testing data. Since the goal was to produce new music, there was not a way to properly split the data into testing and training sets. Thus the loss is calculating the difference in predicted and actual values for the entire dataset. With not loss calculated on testing data, the task of evaluation was left to my ears.
 
 ##### Results
 After 1 epoch:
@@ -41,7 +45,7 @@ After 20 epochs:
 You can see that the network has learned some of the structure of ABC format, and is even beginning to write titles for its tunes.
 
 ##### Postscript
-I was able to successfully convert the ABC files to staff notation and play some of the tunes with MuseScore 2. Here are some of my favorite titles:
+I was able to successfully convert the ABC files to staff notation and play some of the tunes using a program called [MuseScore](https://musescore.org/en). Here are some of my favorite titles:
 
 1. Cone Blcen Cherronatee
 2. Slio Keleoso

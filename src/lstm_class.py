@@ -1,12 +1,14 @@
 import tensorflow as tf
 import numpy as np
 import sys
+import argparse
 from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers.recurrent import LSTM
 from keras.layers.core import Dense, Activation, Dropout
 from keras.optimizers import RMSprop, Adam
 from keras.callbacks import LambdaCallback, TensorBoard
+
 
 class ABC():
 
@@ -16,7 +18,7 @@ class ABC():
         self.epochs = epochs
         self.batch_size = batch_size
 
-    def apply_functions(self):
+    def apply_methods(self):
 
         self.load_data()
         self.create_idx_dictionary()
@@ -33,12 +35,12 @@ class ABC():
         with tf.gfile.GFile(self.data, 'r') as f:
 
             self.abc = f.read()
+            print(len(self.abc))
             self.vocabulary = list(set(self.abc))
             self.num_char = len(self.abc)
             self.vocab_size = len(self.vocabulary)
 
     def create_idx_dictionary(self):
-
         '''Creates index to vocabulary and vocabulary to index dictionaries.
         Input: The unique vocabulary of the data
         Output: Dictionaries storing the vocabulary and their index and vice versa'''
@@ -48,7 +50,6 @@ class ABC():
 
 
     def prepare_X_y(self):
-
         '''Prepares the data for the neural network.
         Input: Data as txt, number of chars, desired sequence length, char to idx dictionary
         Output: dataX for "training" and dataY the "target" (which is one step ahead of dataX)'''
@@ -64,8 +65,7 @@ class ABC():
 
 
     def vectorize_X_y(self):
-
-        '''Converts dataX and dataY to vectors of boolean values with desired character set to 1
+        '''Converts dataX and dataY to vectors of boolean values
         Input: dataX and dataY, desired sequence, unique vocabulary, char to idx dictionary
         Output: X and y as boolean vectors.'''
 
@@ -78,19 +78,18 @@ class ABC():
             self.y[idx, self.char_to_idx_dict[self.dataY[idx]]] = 1
 
     def model(self):
-
         '''Creates a Keras LSTM model
         Input: Vectorized X and y, unique vocabulary
         Output: A LSTM model'''
 
         memory_units = 100
         dropout_rate = 0.3
-        rmsprop = RMSprop(lr=0.001) # found minimum at around 20
+        rmsprop = RMSprop(lr=0.008) # found minimum at around 20
         #adam = Adam(lr=0.001) #rmsprop worked better
 
         self.model = Sequential()
-        self.model.add(LSTM(memory_units, input_shape=(self.sequences, len(self.vocabulary)), return_sequences=True))
-        self.model.add(LSTM(memory_units))
+        self.model.add(LSTM(memory_units, input_shape=(self.sequences, len(self.vocabulary))))#, return_sequences=True))
+        #self.model.add(LSTM(memory_units))
         self.model.add(Dropout(dropout_rate))
         self.model.add(Dense(len(self.vocabulary), activation='softmax'))
 
@@ -108,7 +107,6 @@ class ABC():
         return self.model
 
     def sample_with_diversity(self, diversity):
-
         '''Takes the array of predictions from the model that were generated from the sequence pattern,
         Takes the natural log of that distribution, and divides it by the diversity
         Exponentiate the results so that we're back to probabilities that don't sum to 1,
@@ -118,7 +116,8 @@ class ABC():
         If the diversity < 1, it makes the most probabable characters even more probable, reducing diversity
         If the diversity > 1, it makes the least probabable characters more probable, increasing diversity.
         Input: An array of the predicted values from the model, diversity list
-        Output: The index of the largest number from the calculated probabilities, accounting for diversity.'''
+        Output: The index of the largest number from the calculated probabilities, accounting for diversity.
+        Thanks to Team Keras.'''
 
         self.predictions = np.asarray(self.predictions).astype('float64') # for better accuracy, but more memory intensive
         self.predictions = np.log(self.predictions) / diversity # take nat log of the preds, divide it by the diversity
@@ -146,7 +145,7 @@ class ABC():
             print('----- Generating with seed: "' + pattern + '"''\n')
             sys.stdout.write(self.music_generated)
 
-            for i in range(500):
+            for i in range(2000):
                 x_pred = np.zeros((1, self.sequences, len(self.vocabulary)))
 
                 for x, char in enumerate(pattern):
@@ -167,35 +166,26 @@ class ABC():
 
 if __name__ == '__main__':
 
-    # training_data = '/Users/erindesmond/Documents/abc_lstm/data/abc_train.txt'
-    # testing_data = '/Users/erindesmond/Documents/abc_lstm/data/abc_test.txt'
-    # classical_test = '/Users/erindesmond/Documents/abc_lstm/data/classical_test.txt'
-    irish = '../data/abc_all.txt'
-    bach = '../data/bach.rtf'
-    enya = '../data/enya.rtf'
-    mj = '../data/mj.rtf'
-    everyone = '../data/all_together.rtf'
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", help='ABC notation of music training data, a txt or rtf file.')
+    args = parser.parse_args()
+    print(args.data)
+
+    # irish = '../data/abc_all.txt'
+    # bach = '../data/bach.rtf'
+    # enya = '../data/enya.rtf'
+    # mj = '../data/mj.rtf'
+    # backstreet = '../data/backstreet.rtf'
+    # everyone = '../data/all_together.rtf'
 
     sequences = 25
-    epochs = 5
+    epochs = 50
     batch_size = 100
 
-    model = ABC(mj, sequences, epochs, batch_size).apply_functions()
+    model = ABC(args.data, sequences, epochs, batch_size).apply_methods()
 
 
     ''''''
-
-
-
-
-
-
-
-
-
-
-
-#
 
 
 
